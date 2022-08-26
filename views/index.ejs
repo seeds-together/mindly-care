@@ -6,10 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
+    <script defer="defer" src="three-bundle.js"></script>
+    <link href="main.css" rel="stylesheet">
 </head>
 
 <body>
-    <h1>We are all set for Garuda Hacks</h1>
+    <div id="loader" class="hidden">
+        <div class="heading"></div>
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+    </div><button class="simulate" type="button">Simulate A Message</button>
+    <div id="canvas"></div>
+    <div id="container"></div><canvas class="webgl"></canvas>
+    <h4 class="connection_message" style="opacity:0">A Message from Australia</h4>
 </body>
 
 </html>

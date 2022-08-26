@@ -13,6 +13,7 @@ const __dirname = path.resolve();
 dotenv.config();
 const certificate = fs.readFileSync('./db-mindly-care-ca-certificate.crt').toString();
 
+app.use(express.static("public"))
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.use(bodyParser.json({ extended: true }));
@@ -30,7 +31,7 @@ conn.connect((err) => {
 
 //TODO Add all routes here
 app.get("/", (req, res) => {
-  res.render('index');
+  res.render('index', {THREE: THREE});
 });
 
 
