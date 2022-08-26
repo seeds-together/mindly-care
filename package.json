@@ -1,0 +1,26 @@
+{
+  "name": "mindly-care",
+  "version": "1.0.0",
+  "description": "VR App for mental health awareness",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sagar-uprety/mindly-care.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sagar-uprety/mindly-care/issues"
+  },
+  "homepage": "https://github.com/sagar-uprety/mindly-care#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1"
+  }
+}
