@@ -3,10 +3,14 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import mysql from "mysql";
+import path from 'path';
 
 const app = express();
+const __dirname = path.resolve();
 dotenv.config();
 
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -21,7 +25,7 @@ conn.connect((err) => {
 
 //TODO Add all routes here
 app.get("/", (req, res) => {
-  res.send("We are all set for Garuda Hacks");
+  res.render('index');
 });
 
 //404 error handler page
