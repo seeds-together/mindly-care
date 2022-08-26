@@ -2,12 +2,14 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
+import fs from 'fs';
 import mysql from "mysql";
 import path from 'path';
 
 const app = express();
 const __dirname = path.resolve();
 dotenv.config();
+const certificate = fs.readFileSync('./db-mindly-care-ca-certificate.crt').toString();
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -17,7 +19,7 @@ app.use(cors());
 
 
 // Conncetion to MySQL Database
-var conn = mysql.createConnection({ host: "garudahacks.mysql.database.azure.com", user: "garuda@garudahacks", password: process.env.GH_PASSWORD, database: process.env.GH_DATABASE, port: 3306 });
+var conn = mysql.createConnection({ host: "lin-7654-5099-mysql-primary.servers.linodedb.net", user: "linroot", password: process.env.GH_PASSWORD, database: process.env.GH_DATABASE, port: 3306, ssl: { ca: certificate } });
 conn.connect((err) => {
   err ? console.log(err) : console.log('Connected to database 🙂');
 })
