@@ -4,10 +4,13 @@
 }
 
 html,body{
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 div#canvas{
+    background-image: radial-gradient(lightyellow, skyblue)
+}
+div#container{
     background-image: radial-gradient(lightyellow, skyblue)
 }
 
@@ -15,6 +18,10 @@ div#canvas{
     position: fixed;
     top: 0;
     left: 0;
+}
+
+#canvas{
+  height: 100vh;
 }
 
 #loader{

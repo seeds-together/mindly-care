@@ -9,7 +9,8 @@ module.exports = {
     {
         hashFunction: 'xxhash64',
         filename: 'three-bundle.js',
-        path: path.resolve(__dirname, '../../public')
+        path: path.resolve(__dirname, '../../public'),
+        clean: true
     },
     devtool: 'source-map',
     plugins:
