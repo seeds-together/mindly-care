@@ -109,6 +109,12 @@ app.post('/signup', (req, res) => {
       // console.log(result);
       res.render('signup');
     }
+    else {
+      conn.query(`INSERT INTO USERS (Username, Email, Password, twilio_code) VALUES ('${username}', '${email}', '${hashPassword}', '${code}');`, (err, result) => {
+        if (err) console.log(err);
+        res.redirect('login');
+      })
+    }
   });
 });
 
