@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>Messages</title>
+</head>
+
+<body style="padding-bottom: 50px; background-color: #99CCFF;">
+
+    <div class="container">
+
+        <div class="sidenav" style="position: fixed; left: 0; background-color: #80BFFF; 
+        padding-top: 80px; height: 100vh; width: fit-content;">
+
+            <input id="newChatName" placeholder="new chat" style="max-width: 85px;"></input><br>
+            <button onclick="newMessage()">New Chat</button>
+            <!-- <ul style="list-style-type: none; padding-left: 10px;" id="contacts">
+                <% for (var i=0; i < sess.cnames.length; i++) { %>
+                    <li class="list" id="<%= sess.cnames[i].Id %>">
+                        <%= sess.cnames[i].Username %>
+                    </li>
+                    <% } %>
+            </ul> -->
+            <br><br>
+            <ul class="list" style="list-style-type: none; padding-left: 10px;" id="contacts2">
+            </ul>
+        </div>
+
+        <br><br>
+
+        <ul id="mesages" style="list-style-type:none; padding-left: 80px;">
+        </ul>
+
+        <br><br><br><br>
+
+    </div>
+
+    <div style="position: fixed; bottom: 0; background-color: #007BFF; 
+    width: 100%; text-align: center; padding-top: 10px; padding-bottom: 10px;">
+        <input id="chat-input" type="text" style="width: 60%; padding: 3px;background-color: azure;"></input>
+        <button id="send">Send</button>
+    </div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
+<script>
+    var socket = io()
+
+    var messageArr = []
+    var currentChatId = -1
+    var currentChatName = ''
+    var refresh = false
+    var lastId = -1
+    var lastSelected = -1
+    var listSize = 0
+
+
+
+    var newChatName = document.getElementById('newChatName')
+    function newMessage() {
+        var name = newChatName.value
+        newChatName.value = ''
+        console.log('Test');
+        socket.emit('newChat', { name: name })
+    }
+
+    socket.on('newChatAdded', function ({ name, rid }) {
+        var cli = document.createElement("li");
+        var cont = document.getElementById('contacts2')
+        cli.setAttribute("id", rid)
+        cli.appendChild(document.createTextNode(name))
+        cli.addEventListener("click", function (e) {
+            socket.emit('getMsg', { user: e.target.innerText, id: e.target.id })
+            e.target.style.fontWeight = "bold"
+            // console.log(e)
+            lastSelected = e.target.id
+            currentChatName = e.target.innerText
+            currentChatId = e.target.id
+        })
+        cont.appendChild(cli)
+
+    })
+
+    setInterval(function () {
+        socket.emit('getNames', { data: 'get names' })
+    }, 1000)
+
+    socket.on('listContacts', function (data) {
+        // console.log(data)
+        var cont = document.getElementById('contacts2')
+        if (data.data.length < 1) {
+            cont.innerHTML = ''
+        }
+        else if (listSize != data.data.length) {
+            listSize = data.data.length
+            cont.innerHTML = ''
+            data.data.forEach(c => {
+                // console.log(c)
+                var cli2 = document.createElement("li")
+                cli2.setAttribute("id", c.Id)
+                cli2.setAttribute("class", "list")
+                cli2.appendChild(document.createTextNode(c.Username))
+                cli2.addEventListener("click", function (e) {
+                    socket.emit('getMsg', { user: e.target.innerText, id: e.target.id })
+                    e.target.style.fontWeight = "bold"
+                    // console.log(e)
+                    lastSelected = e.target.id
+                    currentChatName = e.target.innerText
+                    currentChatId = e.target.id
+                })
+                cont.appendChild(cli2)
+            })
+        }
+
+    })
+
+    var item = document.getElementsByClassName("list");
+    for (var i = 0; i < item.length; i++) {
+        item[i].addEventListener("click", function (e) {
+            socket.emit('getMsg', { user: e.target.innerText, id: e.target.id })
+            lastSelected = e.target.id
+            currentChatName = e.target.innerText
+            currentChatId = e.target.id
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+    }
+
+    setInterval(function () {
+        socket.emit('getMsg', { user: currentChatName, id: currentChatId })
+        for (var i = 0; i < item.length; i++) {
+            lastSelected == item[i].id ? (item[i].style.fontWeight = 'bold') : (item[i].style.fontWeight = 'normal')
+        }
+    }, 1000)
+
+    socket.on('showMsg', function ({ data, result }) {
+
+        if (result.length < 1) {
+            var ul = document.getElementById("mesages");
+            ul.innerHTML = ''
+        }
+
+        else if (lastId != result[result.length - 1]?.Id) {
+            lastId = result[result.length - 1]?.Id || -1
+            currentChatId = data.id
+            var ul = document.getElementById("mesages");
+            ul.innerHTML = ''
+            result.forEach(m => {
+                messageArr.push(m.Content)
+                var i = m.FromUser
+                var timeFormat = m.Time.split(/[- :]/);
+                var timeString = timeFormat[2].substring(0, 2) + " " + moment().month(timeFormat[1] - 1).format("MMMM").substring(0, 3) + ", " + timeFormat[2].substring(3) + ":" + timeFormat[3]
+                var ul = document.getElementById("mesages");
+                var li = document.createElement("li");
+                var time = document.createElement("p")
+                time.setAttribute("style", "font-size: 12px; margin: 0px")
+                time.append(timeString)
+                var children = ul.children.length + 1
+                li.setAttribute("id", "element" + children)
+                i == data.id ? (li.setAttribute("style", "background-color: #E6F2FF; padding: 12px;")) :
+                    (li.setAttribute("style", "background-color:#CCEBFF; text-align: right; padding: 12px;"))
+                li.appendChild(document.createTextNode(m.Content));
+                li.appendChild(document.createElement("br"))
+                li.append(time)
+                ul.appendChild(li)
+            })
+        }
+
+    })
+
+    var send = document.getElementById('send')
+    var messageData = document.getElementById('chat-input')
+    send.addEventListener('click', function () {
+        var data = messageData.value
+        messageData.value = ''
+
+        socket.emit('messageData', { data: data, toId: currentChatId })
+    })
+
+    socket.emit('test', 'test');
+</script>
+
+</html>
