@@ -75,7 +75,7 @@ app.post('/login', function (req, res) {
       req.session.uid = result[0].Id;
       res.redirect('dashboard');
     }
-  );
+  });
 });
 
 app.get('/logout', (req, res) => {
@@ -108,7 +108,7 @@ app.post('/signup', (req, res) => {
       // console.log(result);
       res.render('signup');
     }
-  );
+  });
 });
 
 app.get('/dashboard', function (req, res) {
