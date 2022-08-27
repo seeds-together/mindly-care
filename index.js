@@ -1,13 +1,14 @@
-import bcrypt from 'bcrypt';
+import bcrypt from "bcrypt";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import session from "express-session";
-import fs from 'fs';
+import fs from "fs";
 import mysql from "mysql";
 import path from 'path';
 import { Server } from "socket.io";
+
 
 const app = express();
 //Server Listens On:
@@ -18,33 +19,44 @@ const server = app.listen(port, () => {
 
 const __dirname = path.resolve();
 dotenv.config();
-const certificate = fs.readFileSync('./db-mindly-care-ca-certificate.crt').toString();
+const certificate = fs
+  .readFileSync("./db-mindly-care-ca-certificate.crt")
+  .toString();
 
-app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');
+app.set("view engine", "ejs");
+app.set("views", __dirname + "/views");
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true, name: 'JSESSION' }));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    name: "JSESSION",
+  })
+);
 app.use(cors());
+
 
 
 // Conncetion to MySQL Database
 const conn = mysql.createConnection({ host: "lin-7654-5099-mysql-primary.servers.linodedb.net", user: "linroot", password: process.env.GH_PASSWORD, database: process.env.GH_DATABASE, port: 3306, ssl: { ca: certificate } });
-conn.connect((err) => {
-  err ? console.log(err) : console.log('Connected to database 🙂');
-})
 
+conn.connect((err) => {
+  err ? console.log(err) : console.log("Connected to database 🙂");
+});
 
 //TODO Add all routes here
 app.get("/", (req, res) => {
-  res.render('index');
+  res.render("index");
 });
 
-
-
-app.get('/login', function (req, res) {
-  if (req.session.uid) { res.redirect('dashboard'); }
-  else { res.render('login'); }
+app.get("/login", function (req, res) {
+  if (req.session.uid) {
+    res.redirect("dashboard");
+  } else {
+    res.render("login");
+  }
 });
 
 app.post('/login', function (req, res) {
@@ -63,10 +75,7 @@ app.post('/login', function (req, res) {
       req.session.uid = result[0].Id;
       res.redirect('dashboard');
     }
-    else {
-      res.redirect('login');
-    }
-  })
+  );
 });
 
 app.get('/logout', (req, res) => {
@@ -99,15 +108,8 @@ app.post('/signup', (req, res) => {
       // console.log(result);
       res.render('signup');
     }
-    else {
-      conn.query(`INSERT INTO USERS (Username, Email, Password, twilio_code) VALUES ('${username}', '${email}', '${hashPassword}', '${code}');`, (err, result) => {
-        if (err) console.log(err);
-        res.redirect('login');
-      })
-    }
-  })
+  );
 });
-
 
 app.get('/dashboard', function (req, res) {
   if (!req.session.loggedin) { res.redirect('login'); }
