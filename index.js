@@ -1,3 +1,4 @@
+import axios from "axios";
 import bcrypt from "bcrypt";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -146,6 +147,18 @@ app.get('/chat', function (req, res) {
         })
 
         socket.on('newChat', () => {
+          // var ip_url = 'http://ip-api.com/json/' + req.ip;
+          var ip_url = 'http://ip-api.com/json/' + '24.48.0.1'; // Canada
+          console.log(req.ip);
+          axios.get(ip_url)
+            .then(function (response) {
+              console.log(response.data.country);
+              socket.emit('rotateCountry', { country: response.data.country });
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
           conn.query(`SELECT Id,Username FROM USERS WHERE is_professional = 1`, (err, result) => {
             result = result[Math.floor(Math.random() * result.length)];
             if (err) {

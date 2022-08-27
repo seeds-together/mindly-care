@@ -23,4 +23,17 @@
     <h4 class="connection_message" style="opacity:0">A Message from Australia</h4>
 </body>
 
+// WIP
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
+<script>
+    var socket = io();
+    socket.on('rotateCountry', (data) => {
+        setInterval(() => {
+            console.log(data);
+        }, 200);
+    });
+</script>
+
 </html>
