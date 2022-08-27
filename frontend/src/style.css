@@ -10,6 +10,9 @@ html,body{
 div#canvas{
     background-image: radial-gradient(lightyellow, skyblue)
 }
+div#container{
+    background-image: radial-gradient(lightyellow, skyblue)
+}
 
 .webgl{
     position: fixed;
