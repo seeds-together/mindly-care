@@ -9,7 +9,22 @@
 </head>
 
 <body>
-    <h1>Log In Page</h1>
+    <div class="container">
+        <form method="POST" action="/login">
+            <div class="form-group">
+                <label for="username">username: </label><input class="form-control" type="text" name="username"
+                    id="username" required minlength="4"><br>
+                <label for="password">Password: </label><input class="form-control" type="password" name="password"
+                    id="password" required minlength="4"><br>
+            </div>
+            <input type="submit" value="login">
+        </form>
+
+        <p>No account yet?</p>
+        <form method="GET" action="/signup">
+            <button type="submit">Sign up</button>
+        </form>
+    </div>
 </body>
 
 </html>
