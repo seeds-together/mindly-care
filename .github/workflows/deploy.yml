@@ -35,7 +35,7 @@ jobs:
 
   deploy_on_linode:
     name: Run update script via ssh to pull and update container
-    needs: "push_to_registry"
+    needs: "push_to_docker_hub"
     runs-on: ubuntu-latest
     steps:
       - name: executing remote ssh commands using password
