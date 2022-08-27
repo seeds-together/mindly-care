@@ -33,7 +33,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-  Deploy_on_linode:
+  deploy_on_linode:
     name: Run update script via ssh to pull and update container
     needs: "push_to_registry"
     runs-on: ubuntu-latest
