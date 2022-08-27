@@ -44,7 +44,6 @@ jobs:
           host: ${{ secrets.LINODE_HOST }}
           username: ${{ secrets.LINODE_USERNAME }}
           password: ${{ secrets.LINODE_PASSWORD }}
-          port: ${{ secrets.PORT }}
+          port: ${{ secrets.LINODE_PORT }}
           script: |
             echo "Reached Linode Server"
-            sh update.sh
