@@ -7,7 +7,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as animation from './experience/animation'
 import * as light from './experience/lights'
 
-const animationContainer = document.querySelector("#loader")
+{
+    const animationContainer = document.querySelector("#loader")
 // sizes
 const sizes = {
     width: window.innerWidth,
@@ -233,28 +234,20 @@ controls.enableDamping = true
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
 renderer.setSize(sizes.width, sizes.height)
 // renderer.setClearColor(0xC3E7F5, 1);
+
+
 document.getElementById('canvas').appendChild(renderer.domElement);
 // document.getElementById('canvas-globe').appendChild(renderer.domElement);
 renderer.render(scene, camera)
 
 const clock = new THREE.Clock()
 
-// const spinToCountry = ()=>{
-
-// }
 
 // Animations
 const tick = () => {
     // Clock
-
-    // animatedRing.rotation.x = -Math.PI * 0.5
-    // animatedRing.rotation.z = -Math.PI * 0.3
-
     const elapsedTime = clock.getElapsedTime()
     animation.animateRing(animatedRing, elapsedTime)
-    // if (startAnimation) {
-    //     object.rotation.y = elapsedTime * 0.3
-    // }
 
     if (startUpdates) {
         controls.update()
@@ -276,3 +269,11 @@ window.addEventListener("resize", () => {
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio))
 })
+
+}
+
+{
+ 
+    
+    
+}

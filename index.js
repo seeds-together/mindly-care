@@ -31,7 +31,7 @@ conn.connect((err) => {
 
 //TODO Add all routes here
 app.get("/", (req, res) => {
-  res.render('index', {THREE: THREE});
+  res.render('index');
 });
 
 
