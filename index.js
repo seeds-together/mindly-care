@@ -42,7 +42,7 @@ conn.connect((err) => {
   err ? console.log(err) : console.log("Connected to database 🙂");
 });
 
-//TODO Add all routes here .
+//TODO Add all routes here
 app.get("/", (req, res) => {
   res.render("index");
 });
