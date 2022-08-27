@@ -118,7 +118,7 @@ app.get("/dashboard", function (req, res) {
   res.render("dashboard");
 });
 
-//404 error handler page
+//404 error handler page s
 app.use((_, res) => {
   res.status(500).json({ message: "404: Page Not Found", state: false });
 });
