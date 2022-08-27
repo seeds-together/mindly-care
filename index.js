@@ -10,7 +10,12 @@ import path from 'path';
 import { Server } from "socket.io";
 
 const app = express();
-const io = new Server({});
+//Server Listens On:
+const port = 3000;
+const server = app.listen(port, () => {
+  console.log(`Server Listening on ${port}`);
+});
+
 const __dirname = path.resolve();
 dotenv.config();
 const certificate = fs.readFileSync('./db-mindly-care-ca-certificate.crt').toString();
@@ -64,8 +69,8 @@ app.post('/login', function (req, res) {
   })
 });
 
-app.get('/logout', function (req, res) {
-  req.session.destroy(function (err) {
+app.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
     if (err) {
       console.log(err);
     } else {
@@ -120,7 +125,7 @@ app.get('/chat', function (req, res) {
       result.forEach(element => {
         req.session.cnames.push(element);
       });
-
+      const io = new Server(server, {});
       io.sockets.on('connection', (socket) => {
 
         console.log(req.session);
@@ -131,23 +136,17 @@ app.get('/chat', function (req, res) {
           })
         })
 
-        socket.on('newChat', (name) => {
-          console.log('Inside newChat');
-          conn.query(`SELECT Id,Username FROM USERS WHERE Username = '${name.name}'`, (err, result) => {
-            console.log(result);
+        socket.on('newChat', () => {
+          conn.query(`SELECT Id,Username FROM USERS WHERE is_professional = 1`, (err, result) => {
+            result = result[Math.floor(Math.random() * result.length)];
             if (err) {
               console.log("err");
             }
-            if (result.length > 0) {
-              const rid = result[0].Id;
-              req.session.cnames.push(result[0]);
-              conn.query(`INSERT INTO CONTACTS (MAIN_USER, CONN_USER) VALUES (${req.session.uid}, ${result[0].Id}),(${result[0].Id}, ${req.session.uid});`, (err, result) => {
-              })
-              socket.emit('newChatAdded', { name: name.name, id: rid });
-            }
-            else {
-              console.log("no user exists");
-            }
+            const rid = result.Id;
+            req.session.cnames.push(result);
+            conn.query(`INSERT INTO CONTACTS (MAIN_USER, CONN_USER) VALUES (${req.session.uid}, ${result.Id}),(${result.Id}, ${req.session.uid});`, (err, result) => {
+            })
+            socket.emit('newChatAdded', { id: rid });
           })
         })
 
@@ -172,8 +171,4 @@ app.use((_, res) => {
   res.status(500).json({ message: "404: Page Not Found", state: false });
 });
 
-//Server Listens On:
-const port = 3000;
-app.listen(port, () => {
-  console.log(`Server Listening on ${port}`);
-});
+
