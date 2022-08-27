@@ -6,7 +6,7 @@ COPY . /home/mindly-care-app
 
 WORKDIR /home/mindly-care-app
 
-RUN npm ci  --only=production
+RUN npm install
 
 EXPOSE 3000
 
