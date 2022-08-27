@@ -15,7 +15,6 @@
         <div class="sidenav" style="position: fixed; left: 0; background-color: #80BFFF; 
         padding-top: 80px; height: 100vh; width: fit-content;">
 
-            <input id="newChatName" placeholder="new chat" style="max-width: 85px;"></input><br>
             <button onclick="newMessage()">New Chat</button>
             <!-- <ul style="list-style-type: none; padding-left: 10px;" id="contacts">
                 <% for (var i=0; i < sess.cnames.length; i++) { %>
@@ -61,17 +60,15 @@
 
 
 
-    var newChatName = document.getElementById('newChatName')
     function newMessage() {
-        var name = newChatName.value
-        newChatName.value = ''
-        console.log('Test');
-        socket.emit('newChat', { name: name })
+        socket.emit('newChat')
     }
 
     socket.on('newChatAdded', function ({ name, rid }) {
+        var pass = true;
         var cli = document.createElement("li");
-        var cont = document.getElementById('contacts2')
+        var cont = document.getElementById('contacts2');
+
         cli.setAttribute("id", rid)
         cli.appendChild(document.createTextNode(name))
         cli.addEventListener("click", function (e) {
@@ -82,7 +79,16 @@
             currentChatName = e.target.innerText
             currentChatId = e.target.id
         })
-        cont.appendChild(cli)
+        cont.childNodes.forEach((child) => {
+            console.log(name);
+            if (child.innerHTML == name) {
+                pass = false;
+            }
+        })
+        if (pass) {
+
+            cont.appendChild(cli)
+        }
 
     })
 
