@@ -132,3 +132,6 @@ dist
 
 # certificates
 *.crt
+
+# Package-lock
+package-lock.json
