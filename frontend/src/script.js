@@ -39,7 +39,7 @@ const sizes = {
             // on Loaded
             object = data.scene
             object.position.set(0, -0.1, 0)
-            console.log(object.children);
+            // console.log(object.children);
             globe = object.children[0]
             // globe.position.set(0, 0, 0)
             scene.add(object)
@@ -279,5 +279,12 @@ const sizes = {
     const app = new App()
     if (app) {
         window.app = app;
+    }
+}
+
+{
+    const room = new Room()
+    if (room) {
+        window.room = room;
     }
 }
