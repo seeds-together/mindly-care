@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build": "webpack --config ./frontend/bundler/webpack.prod.js && del .\\public\\index.html",
+    "build": "webpack --config ./frontend/bundler/webpack.prod.js && rm public/index.html",
     "frontend": "webpack serve --config ./frontend/bundler/webpack.dev.js"
   },
   "repository": {
