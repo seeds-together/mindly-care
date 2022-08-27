@@ -8,4 +8,6 @@ WORKDIR /home/mindly-care-app
 
 RUN npm ci  --only=production
 
+EXPOSE 3000
+
 CMD ["node", "index.js"]
