@@ -118,13 +118,13 @@ let App = class App {
 
   createCamera() {
     const camera = new THREE.PerspectiveCamera(
-      50,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      100
+      25,
+      window.innerWidth / window.innerHeight
     );
 
-    camera.position.set(3, 3, 6);
+    camera.position.x = 3;
+    camera.position.y = 3;
+    camera.position.z = 10;
     // camera.lookAt(new Vector3(0,0,0))
     return camera;
   }
