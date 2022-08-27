@@ -46,4 +46,6 @@ jobs:
           password: ${{ secrets.LINODE_PASSWORD }}
           port: ${{ secrets.LINODE_PORT }}
           script: |
-            echo "Reached Linode Server"
+            echo "Reached Linode Server from GitHub Actions"
+            pwd
+            sh deploy.sh
