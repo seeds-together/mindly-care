@@ -95,10 +95,10 @@ const sizes = {
                 }
             })
     }
+    
     document.querySelector('button.simulate').addEventListener("click", () => {
         parameters.animate()
     })
-
     // GUI
     const gui = new lil.GUI()
 
