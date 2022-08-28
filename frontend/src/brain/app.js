@@ -260,10 +260,10 @@ let App = class App {
 
       let intersects = this.raycaster.intersectObjects(this.scene.children);
 
-      intersects.forEach((c) => {
-        console.log(intersects);
-        console.log(c.object.geometry.type);
-      });
+      // intersects.forEach((c) => {
+      //   // console.log(intersects);
+      //   // console.log(c.object.geometry.type);
+      // });
 
       // let intersectsObj = intersects.filter( (sceneChild) => {
       //     Object.keys(sceneChild.geometry)[0] ==
@@ -294,7 +294,7 @@ let App = class App {
     const loader = new GLTFLoader().load("/models/room3.glb", (gltf) => {
       // gltf.scene.scale.set( 400,400,400 );
       mesh = gltf.scene.children[0];
-      console.log("room", mesh)
+      // console.log("room", mesh)
       mesh.material = new THREE.MeshPhongMaterial({
         lightMap: map,
         map: map,
@@ -549,7 +549,7 @@ let App = class App {
   changeCard() {
     // this.cardModel
     if (makenewCard) {
-      console.log("making new card");
+      // console.log("making new card");
       this.scene.remove(this.cardModel);
       this.scene.remove(this.cardTitle);
       this.scene.remove(this.cardDesc);

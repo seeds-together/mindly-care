@@ -14,6 +14,10 @@ div#container{
     background-image: radial-gradient(lightyellow, skyblue)
 }
 
+canvas.room{
+  border-radius: 10px;
+}
+
 .webgl{
     position: fixed;
     top: 0;

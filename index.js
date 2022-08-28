@@ -23,9 +23,11 @@ const certificate = fs
   .readFileSync("./db-mindly-care-ca-certificate.crt")
   .toString();
 
-app.use(express.static("public"));
-app.set("view engine", "ejs");
-app.set("views", __dirname + "/views");
+app.use(express.static("public"))
+app.use(express.static("assets"))
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
+
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
