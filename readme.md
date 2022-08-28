@@ -8,7 +8,9 @@
 </a>
 </div>
 
-## About ℹ️
+## About ℹ️ 
+
+Mindly Care is an attempt to solve this issue by creating mental health awareness, providing chat support with professionals and connecting people to make sure they don't feel alone. We aim to show mental illness is real and embrace the people suffering from mental illness, all with an immersive VR experience.
 
 ## Key Features 🧑‍💻
 
@@ -16,8 +18,8 @@
 - Visualization of people seeking support on a VR 3D Globe
 - Chat with Mental Health Professionals
 
-<img src="https://github.com/"/>
-
+<img src="https://user-images.githubusercontent.com/51237312/187060044-4eb7250b-cb66-454d-9b6d-1c6069005392.png" width=600/>
+<img src="https://user-images.githubusercontent.com/51237312/187060049-afca488a-db98-400f-9623-6fdaecab409e.png" width=600/>
 
 ## Run Locally (Development Environment) ⚒️
 
@@ -51,8 +53,6 @@ $ npm build
 $ node index.js
 ```
 
-## Contribution Guide 🫂
-
 ## Tech Used 💻
 
 - Development 
@@ -85,4 +85,4 @@ $ node index.js
 - Twilio 
 
 ## Get in Touch
-Feel free to reachout to us at mindlycaredev@gmail.com
+Feel free to reach out to us at mindlycaredev@gmail.com
