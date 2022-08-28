@@ -76,7 +76,7 @@ $ node index.js
     - Linode VM, Managed MYSQL Database, Volumes and Domains
     - .xyz (Domain Provider)
   
-## GitHub Practices and Tools Used
+## GitHub Practices and Tools Used 
 
 - GitHub Actions (CI/CD Pipeline) 
 - GitHub Secrets
@@ -84,5 +84,5 @@ $ node index.js
 - VS Code
 - Twilio 
 
-## Get in Touch
+## Get in Touch 📞
 Feel free to reach out to us at mindlycaredev@gmail.com
