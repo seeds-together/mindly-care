@@ -85,5 +85,4 @@ $ node index.js
 - Twilio 
 
 ## Get in Touch
-
-
+Feel free to reachout to us at mindlycaredev@gmail.com
