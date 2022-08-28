@@ -18,7 +18,7 @@ Mindly Care is an attempt to solve this issue by creating mental health awarenes
 - Visualization of people seeking support on a VR 3D Globe
 - Chat with Mental Health Professionals
 
-<img src="https://user-images.githubusercontent.com/51237312/187060044-4eb7250b-cb66-454d-9b6d-1c6069005392.png" width=600/>
+![ezgif-4-029ab3018f](https://user-images.githubusercontent.com/51237312/187060309-5878ef70-71b5-4dd4-b784-61810b8d901f.gif)
 <img src="https://user-images.githubusercontent.com/51237312/187060049-afca488a-db98-400f-9623-6fdaecab409e.png" width=600/>
 
 ## Run Locally (Development Environment) ⚒️
