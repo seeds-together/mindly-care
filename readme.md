@@ -16,7 +16,7 @@
 - Visualization of people seeking support on a VR 3D Globe
 - Chat with Mental Health Professionals
 
-<img src="https://github.com/KUHackfest2022/Documents/blob/main/296626275_1216695055821443_6603454624414513447_n.png"/>
+<img src="https://github.com/"/>
 
 
 ## Run Locally (Development Environment) ⚒️
