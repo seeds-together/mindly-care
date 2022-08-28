@@ -5,7 +5,7 @@
 
 <div align="center">
 <a href="http://mindlycare.xyz/" target="_blank">
-<img width="200" alt="image" src="https://user-images.githubusercontent.com/51237312/187054582-4d763157-6d94-4d7e-9a46-95cdd498c943.png">
+<img width="200" alt="image" src="">
 </a>
 </div>
 
@@ -27,10 +27,10 @@
 
 ```bash
 # Clone this repository for unity app
-$ git clone https://github.com/KUHackfest2022/App
+$ git clone 
 
 # Clone this repository for website
-$ git clone https://github.com/KUHackfest2022/Website
+$ git clone 
 
 ```
 
@@ -39,10 +39,10 @@ $ git clone https://github.com/KUHackfest2022/Website
 
 ```bash
 # Clone this repository for unity app
-$ git clone https://github.com/KUHackfest2022/App
+$ git clone 
 
 # Clone this repository for website
-$ git clone https://github.com/KUHackfest2022/Website
+$ git clone 
 
 ```
 
