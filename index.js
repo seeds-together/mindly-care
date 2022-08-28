@@ -54,6 +54,20 @@ conn.connect((err) => {
   err ? console.log(err) : console.log("Connected to database 🙂");
 });
 
+const soc = new Server(server, {});
+soc.sockets.on('connection', (socket) => {
+  // var ip_url = 'http://ip-api.com/json/' + '24.48.0.1'; // Canada
+  // axios.get(ip_url)
+  //   .then(function (response) {
+  //     console.log(response.data.country);
+  //   })
+  //   .catch(function (error) {
+  //     // handle error
+  //     console.log(error);
+  //   })
+    socket.emit('rotateCountry', { country: "australai" });
+})
+
 //TODO Add all routes here
 app.get("/", (req, res) => {
   res.render("index");
@@ -155,7 +169,11 @@ app.get('/chat', function (req, res) {
       result.forEach(element => {
         req.session.cnames.push(element);
       });
-      const io = new Server(server, {});
+      const io = new Server(server, {
+        cors: {
+          origin: '*',
+        }
+      });
       io.sockets.on('connection', (socket) => {
 
         console.log(req.session);
@@ -168,17 +186,6 @@ app.get('/chat', function (req, res) {
 
         socket.on('newChat', () => {
           // var ip_url = 'http://ip-api.com/json/' + req.ip;
-          var ip_url = 'http://ip-api.com/json/' + '24.48.0.1'; // Canada
-          console.log(req.ip);
-          axios.get(ip_url)
-            .then(function (response) {
-              console.log(response.data.country);
-              socket.emit('rotateCountry', { country: response.data.country });
-            })
-            .catch(function (error) {
-              // handle error
-              console.log(error);
-            })
           conn.query(`SELECT Id,Username FROM USERS WHERE is_professional = 1`, (err, result) => {
             result = result[Math.floor(Math.random() * result.length)];
             if (err) {
