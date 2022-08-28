@@ -45,6 +45,7 @@
     "portfinder-sync": "0.0.2",
     "raw-loader": "^4.0.2",
     "socket.io": "^4.5.1",
+    "socket.io-client": "^4.5.1",
     "style-loader": "^3.3.1",
     "three": "^0.140.0",
     "webpack": "^5.72.0",

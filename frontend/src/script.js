@@ -8,6 +8,14 @@ import * as animation from './experience/animation'
 import * as light from './experience/lights'
 import App from "./brain/app";
 import Room from "./room/app"
+import { io } from "socket.io-client";
+
+const socket = io.connect('http://localhost:3000', {reconnect: true});
+console.log(socket);
+
+socket.on("rotateCountry", (data) => {
+    console.log(data);
+});
 
 // sizes
 const sizes = {
@@ -87,10 +95,10 @@ const sizes = {
                 }
             })
     }
+    
     document.querySelector('button.simulate').addEventListener("click", () => {
         parameters.animate()
     })
-
     // GUI
     const gui = new lil.GUI()
 
