@@ -25,24 +25,30 @@
 - Docker 🐋
 
 ```bash
-# Clone this repository for unity app
-$ git clone 
+# Pull Image from DockerHub
+$ docker pull 977977/mindly-care
 
-# Clone this repository for website
-$ git clone 
+# Start Container
+$ docker start -d -p80:3000 --name mindly-care-app 977977/mindly-care 
 
+# Stop Container 
+$ docker stop mindly-care-app
 ```
 
 - Node.js 🤹
 
 
 ```bash
-# Clone this repository for unity app
-$ git clone 
+# Clone the repository
+$ git clone https://github.com/seeds-together/mindly-care
+$ cd mindly-care
 
-# Clone this repository for website
-$ git clone 
+# Install and Build Packages
+$ npm install
+$ npm build
 
+# Start the server (Listens on port 3000)
+$ node index.js
 ```
 
 ## Contribution Guide 🫂
