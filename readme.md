@@ -2,10 +2,9 @@
  <img src="https://user-images.githubusercontent.com/51237312/187054410-7d75fbc0-6b4e-4927-bc81-9ce0fa996367.png" width=300/>
 </h1>
 <h4 align="center">Spreading Mental Health Awareness with VR | A step towards a healthier psyche !</h4>
-
 <div align="center">
 <a href="http://mindlycare.xyz/" target="_blank">
-<img width="200" alt="image" src="">
+<img width="200" alt="image" src="https://user-images.githubusercontent.com/51237312/187055782-6c36240f-d8c6-4206-8aa8-1a7708be1dcf.png">
 </a>
 </div>
 
