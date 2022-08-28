@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -24,6 +24,199 @@
     <h4 class="connection_message" style="opacity:0">A Message from Australia</h4>
 
     <canvas class="room"></canvas>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/site-assets/favicon.png" type="image/x-icon" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+  <link href="https://fonts.cdnfonts.com/css/uni-neue" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;  800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/style.css" />
+  <script defer="defer" src="three-bundle.js"></script>
+  <link href="main.css" rel="stylesheet">
+  <title>Brain Waffle</title>
+</head>
+
+<body>
+  <div class="content">
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="">
+          <a class="navbar-brand" href="#">
+            <img src="/site-assets/header-logo.svg" alt="" />
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" style="flex-grow: none" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#instructions">Instructions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div id="home" class="container">
+        <div class="header-hero-part">
+          <div class="row">
+            <div class="col-md-6 left-header-text">
+              <h1>Brain Waffle</h1>
+              <p>
+                Demystifying mental health and creating awareness with
+                immersive VR experience
+              </p>
+            </div>
+            <div class="col-md-6 right-header-image">
+              <div class="header-image-box">
+                <img src="/site-assets/vr-girl.svg" alt="" class="vr-girl" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="sidebar-img-container">
+
+
+      <img src="/site-assets/circle-center.svg" alt="" class="circle-center" />
+    </div>
+
+    <div>
+      <div id="loader" class="hidden">
+        <div class="heading"></div>
+        <div class="lds-ripple">
+          <div></div>
+          <div></div>
+        </div>
+      </div><button class="simulate" type="button">Simulate A Message</button>
+      <div id="canvas"></div>
+      <div id="container" style="display: none;"></div><canvas class="webgl"></canvas>
+      <h4 class="connection_message" style="opacity:0">A Message from Australia</h4>
+
+      <canvas class="room" style="display: none;"></canvas>
+    </div>
+
+    <main>
+      <div class="">
+        <div class="flex flex-col justify-center m-auto">
+          <div class="flex md:flex-row flex-col bg-teal-200 justify-center md:text-left text-center">
+            <div class="flex flex-col justify-center items-center relative">
+              <div class="w-56 h-12 md:flex hidden justify-center">
+                <div class="h-full  border-teal-300 border-dashed"></div>
+              </div>
+              <div
+                class="rounded-full w-12 h-12 text-xl text-teal-100 bg-teal-700 font-black flex justify-center items-center absolute top-0 right-0 mt-16 shadow-lg mr-2">
+                1</div>
+              <img alt="step1" class="w-56 h-56 rounded-full shadow my-5 object-scale-down"
+                src="https://image.flaticon.com/icons/svg/1330/1330216.svg">
+              <div class="w-56 h-12 md:flex hidden justify-center">
+                <div class="h-full border-r-4 border-teal-300 border-dashed"></div>
+              </div>
+            </div>
+            <div class="ml-5 p-10 flex flex-col justify-center max-w-2xl rounded bg-teal-200">
+              <div class="text-xs uppercase font-bold text-teal-500">Step 1 - Idea</div>
+              <div class="md:text-3xl text-xl font-bold text-teal-700">Find your best idea</div>
+              <div class="mt-4 text-teal-800">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam facilis,
+                voluptates error alias dolorem praesentium sit soluta iure incidunt labore explicabo eaque, quia
+                architecto veritatis dolores, enim consequatur nihil ipsum.</div>
+            </div>
+          </div>
+          <div class="flex md:flex-row flex-col bg-orange-200 justify-center md:text-left text-center">
+            <div class="flex flex-col justify-center items-center relative">
+              <div class="w-56 h-12 md:flex hidden justify-center">
+                <div class="h-full border-r-4 border-orange-300 border-dashed"></div>
+              </div>
+              <div
+                class="rounded-full w-12 h-12 text-xl text-orange-100 bg-orange-700 font-black flex justify-center items-center absolute top-0 right-0 mt-16 shadow-lg mr-2">
+                2</div>
+              <img alt="step2" class="w-56 h-56 rounded-full shadow my-5 object-scale-down"
+                src="https://image.flaticon.com/icons/svg/1330/1330216.svg">
+              <div class="w-56 h-12 md:flex hidden justify-center">
+                <div class="h-full border-r-4 border-orange-300 border-dashed"></div>
+              </div>
+            </div>
+            <div class="ml-5 p-10 flex flex-col justify-center max-w-2xl rounded bg-orange-200">
+              <div class="text-xs uppercase font-bold text-orange-500">Step 2 - Collaboration</div>
+              <div class="md:text-3xl text-xl font-bold text-orange-700">Find your team and collaborate</div>
+              <div class="mt-4 text-orange-800">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
+                facilis, voluptates error alias dolorem praesentium sit soluta iure incidunt labore explicabo eaque,
+                quia architecto veritatis dolores, enim consequatur nihil ipsum.</div>
+            </div>
+          </div>
+          <div class="flex md:flex-row flex-col bg-indigo-200 justify-center md:text-left text-center">
+            <div class="flex flex-col justify-center items-center relative">
+              <div class="w-56 h-12 md:flex hidden justify-center">
+                <div class="h-full border-r-4 border-indigo-300 border-dashed"></div>
+              </div>
+              <div
+                class="rounded-full w-12 h-12 text-xl text-indigo-100 bg-indigo-700 font-black flex justify-center items-center absolute top-0 right-0 mt-16 shadow-lg mr-2">
+                3</div>
+              <img alt="step3" class="w-56 h-56 rounded-full shadow my-5 object-scale-down"
+                src="https://image.flaticon.com/icons/svg/1330/1330216.svg">
+              <div class="w-56 h-12 md:flex hidden justify-center">
+                <div class="h-full border-r-4 border-indigo-300 border-dashed"></div>
+              </div>
+            </div>
+            <div class="ml-5 p-10 flex flex-col justify-center max-w-2xl rounded bg-indigo-200">
+              <div class="text-xs uppercase font-bold text-indigo-500">Step 3 - Planification</div>
+              <div class="md:text-3xl text-xl font-bold text-indigo-700">Make a good plan and prepare tasks</div>
+              <div class="mt-4 text-indigo-800">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
+                facilis, voluptates error alias dolorem praesentium sit soluta iure incidunt labore explicabo eaque,
+                quia architecto veritatis dolores, enim consequatur nihil ipsum.</div>
+            </div>
+          </div>
+          <div class="flex md:flex-row flex-col bg-pink-200 justify-center md:text-left text-center">
+            <div class="flex flex-col justify-center items-center relative">
+              <div class="w-56 h-12 md:flex hidden justify-center">
+                <div class="h-full border-r-4 border-pink-300 border-dashed"></div>
+              </div>
+              <div
+                class="rounded-full w-12 h-12 text-xl text-pink-100 bg-pink-700 font-black flex justify-center items-center absolute top-0 right-0 mt-16 shadow-lg mr-2">
+                4</div>
+              <img alt="step4" class="w-56 h-56 rounded-full shadow my-5 object-scale-down"
+                src="https://image.flaticon.com/icons/svg/1330/1330216.svg">
+              <div class="w-56 h-12 md:flex hidden justify-center">
+                <div class="h-full  border-pink-300 border-dashed"></div>
+              </div>
+            </div>
+            <div class="ml-5 p-10 flex flex-col justify-center max-w-2xl rounded bg-pink-200">
+              <div class="text-xs uppercase font-bold text-pink-500">Step 4 - Implementation</div>
+              <div class="md:text-3xl text-xl font-bold text-pink-700">Execute, impletement your solution</div>
+              <div class="mt-4 text-pink-800">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam facilis,
+                voluptates error alias dolorem praesentium sit soluta iure incidunt labore explicabo eaque, quia
+                architecto veritatis dolores, enim consequatur nihil ipsum.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer id="contact">
+      <h3>Team Brain Waffle</h3>
+      <p>Copyright © 2022 Brain Waffle. All rights reserved.</p>
+    </footer>
+  </div>
+  <script type="module" src="/index.js"></script>
 </body>
 
 </html>

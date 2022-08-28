@@ -1,0 +1,210 @@
+header{
+    background: rgb(84,195,232);
+background: linear-gradient(180deg, rgba(84,195,232,1) 0%, rgba(135,206,235,1) 77%);
+    padding-top: 20px ;
+}
+
+nav.navbar .navbar-brand img{
+    width: 100px;
+}
+
+.navbar-collapse{
+    flex-grow: inherit;
+}
+
+nav.navbar ul.navbar-nav li{
+    margin-left: 30px;
+}
+
+nav.navbar ul.navbar-nav li a.nav-link{
+    font-family: 'Uni Neue', sans-serif;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    border-bottom: 2px solid #54C3E8;
+    padding: 0 0 2px 0;
+}
+
+nav.navbar ul.navbar-nav li a:hover{
+    border-bottom: 2px solid white;
+}
+
+.header-hero-part h1{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 80px;
+    color: #ffffff;
+    word-spacing: 0.2rem;
+}
+.header-hero-part p{
+    font-family: 'Uni Neue', sans-serif;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.header-hero-part .left-header-text{
+    padding: 90px 0 50px;
+}
+
+.hero-image-down{
+    width: 100%;
+    position: relative;
+    top: -10.45vw;
+}
+
+.header-image-box{
+    position: relative;
+    height: 100%;
+    z-index: 5;
+}
+
+.left-plant-hero, .vr-girl ,.right-plant-hero{
+    position: absolute;
+}
+
+.left-plant-hero{
+    width: 70px;
+    left: 30%;
+    bottom:15%;
+}
+
+.vr-girl{
+    width: 325px;
+    bottom: 0;
+    right: 0;
+}
+
+.right-plant-hero{
+    width: 100px;
+    right: 0px;
+    bottom: 20%;
+}
+
+.sidebar-img-container{
+    position: relative;
+}
+
+.sidebar-svg{
+    width: 200px;
+    position: absolute;
+    right: 0%;
+    top: -41vw;
+    overflow: hidden;
+}
+
+.circle-center{
+    position: absolute;
+    top: -150px;
+    right: 25%;
+    width: 8%;
+}
+
+.enter-vr-btn{
+    background-color: #2A6174;
+    border: 2px solid white;
+    font-size: 20px;
+    padding: 5px 20px;
+    color: white;
+    position: absolute;
+    top: -25vw;
+    left: 8%;
+    border-radius: 25px;
+}
+
+.enter-vr-btn:hover{
+    background-color: #4db3d4;
+}
+
+.enter-vr-btn-instruction{
+    background-color: transparent;
+    font-size: 20px;
+    padding: 5px 20px;
+    color: white;
+    position: absolute;
+    top: -20vw;
+    left: 8%;
+}
+.enter-vr-btn-instruction:hover{
+    color: white
+}
+
+.shift-left-container{
+    width: 95%;
+
+}
+
+.shift-left-container img{
+    width:90%;
+    
+}
+
+.body-text-container{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.body-text-container h2{
+    color: #010101;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+    word-spacing: 0.2rem;
+}
+.body-text-container p{
+    color: #010101;
+    font-family: 'Uni Neue', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.1rem;
+}
+
+.middle-container{
+    margin: 60px 0 0;
+} 
+
+
+
+.middle-container-image-box{
+    text-align: right;
+}
+
+.middle-container-image-box img{
+    width: 75%;
+
+}
+.lower-circle-container{
+    text-align: center;
+    padding: 40px 0 0;
+}
+
+.bottom-container img{
+    width: 50%;
+    margin-bottom: 50px;
+}
+
+footer{
+    background-color: #54C3E8;
+    padding: 30px 0 20px;
+    text-align: center;
+}
+
+footer h3{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: #ffffff;
+    word-spacing: 0.2rem;
+}
+
+footer p{
+    color: #010101;
+    font-family: 'Uni Neue', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.bottom-info{
+    padding: 40px 0 60px;
+}

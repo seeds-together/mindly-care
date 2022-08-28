@@ -24,6 +24,7 @@ const certificate = fs
   .toString();
 
 app.use(express.static("public"))
+app.use(express.static("assets"))
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.use(bodyParser.json({ extended: true }));
