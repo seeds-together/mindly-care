@@ -1,3 +1,4 @@
+import axios from "axios";
 import bcrypt from "bcrypt";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -143,65 +144,65 @@ app.get("/dashboard", function (req, res) {
   res.render("dashboard", { sess: req.session });
 });
 
-app.get("/chat", function (req, res) {
-  if (!req.session.loggedin) {
-    res.redirect("login");
-  } else {
-    req.session.cnames = [];
-    conn.query(
-      "SELECT USERS.Id, Username FROM USERS INNER JOIN CONTACTS ON USERS.Id = CONTACTS.MAIN_USER WHERE CONTACTS.CONN_USER = " +
-        `${req.session.uid}`,
-      (err, result) => {
-        console.log(result);
-        result.forEach((element) => {
-          req.session.cnames.push(element);
-        });
-        const io = new Server(server, {});
-        io.sockets.on("connection", (socket) => {
-          console.log(req.session);
-          socket.on("getMsg", (data) => {
-            conn.query(
-              `SELECT Id,FromUser,ToUser,Content,Time FROM MESSAGES WHERE FromUser = ${req.session.uid} AND ToUser = ${data.id} OR (FromUser = ${data.id} AND ToUser = ${req.session.uid})`,
-              (err, result) => {
-                socket.emit("showMsg", { data: data, result: result });
-              }
-            );
-          });
+app.get('/chat', function (req, res) {
+  if (!req.session.loggedin) { res.redirect('login'); }
+  else {
+    req.session.cnames = []
+    conn.query("SELECT USERS.Id, Username FROM USERS INNER JOIN CONTACTS ON USERS.Id = CONTACTS.MAIN_USER WHERE CONTACTS.CONN_USER = " + `${req.session.uid}`, (err, result) => {
+      console.log(result);
+      result.forEach(element => {
+        req.session.cnames.push(element);
+      });
+      const io = new Server(server, {});
+      io.sockets.on('connection', (socket) => {
 
-          socket.on("newChat", () => {
-            conn.query(
-              `SELECT Id,Username FROM USERS WHERE is_professional = 1`,
-              (err, result) => {
-                result = result[Math.floor(Math.random() * result.length)];
-                if (err) {
-                  console.log("err");
-                }
-                const rid = result.Id;
-                req.session.cnames.push(result);
-                conn.query(
-                  `INSERT INTO CONTACTS (MAIN_USER, CONN_USER) VALUES (${req.session.uid}, ${result.Id}),(${result.Id}, ${req.session.uid});`,
-                  (err, result) => {}
-                );
-                socket.emit("newChatAdded", { id: rid });
-              }
-            );
-          });
+        console.log(req.session);
+        socket.on('getMsg', (data) => {
 
-          socket.on("getNames", () => {
-            socket.emit("listContacts", { data: req.session.cnames });
-          });
+          conn.query(`SELECT Id,FromUser,ToUser,Content,Time FROM MESSAGES WHERE FromUser = ${req.session.uid} AND ToUser = ${data.id} OR (FromUser = ${data.id} AND ToUser = ${req.session.uid})`, (err, result) => {
+            socket.emit('showMsg', { data: data, result: result });
+          })
+        })
 
-          socket.on("messageData", ({ data, toId }) => {
-            conn.query(
-              `INSERT INTO MESSAGES (Content, Time, FromUser, ToUser) VALUES ('${data}', NOW(), ${req.session.uid}, ${toId});`,
-              (err, result) => {}
-            );
-          });
-        });
+        socket.on('newChat', () => {
+          // var ip_url = 'http://ip-api.com/json/' + req.ip;
+          var ip_url = 'http://ip-api.com/json/' + '24.48.0.1'; // Canada
+          console.log(req.ip);
+          axios.get(ip_url)
+            .then(function (response) {
+              console.log(response.data.country);
+              socket.emit('rotateCountry', { country: response.data.country });
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
+          conn.query(`SELECT Id,Username FROM USERS WHERE is_professional = 1`, (err, result) => {
+            result = result[Math.floor(Math.random() * result.length)];
+            if (err) {
+              console.log("err");
+            }
+            const rid = result.Id;
+            req.session.cnames.push(result);
+            conn.query(`INSERT INTO CONTACTS (MAIN_USER, CONN_USER) VALUES (${req.session.uid}, ${result.Id}),(${result.Id}, ${req.session.uid});`, (err, result) => {
+            })
+            socket.emit('newChatAdded', { id: rid });
+          })
+        })
 
-        res.render("chat", { sess: req.session });
-      }
-    );
+        socket.on('getNames', () => {
+          socket.emit('listContacts', { data: req.session.cnames });
+        })
+
+        socket.on('messageData', ({ data, toId }) => {
+          conn.query(`INSERT INTO MESSAGES (Content, Time, FromUser, ToUser) VALUES ('${data}', NOW(), ${req.session.uid}, ${toId});`, (err, result) => {
+
+          })
+        })
+      });
+
+      res.render('chat', { sess: req.session });
+    })
   }
 });
 
